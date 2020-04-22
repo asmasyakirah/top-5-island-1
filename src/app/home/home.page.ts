@@ -65,17 +65,26 @@ export class HomePage {
      * so one way around it, is to clone the data, change it and then
      * assign it;
      */
+     
+    this.http.get('https://randomuser.me/api/').subscribe(res => {
+    
+      // Show API result
+      const data = res;
+      console.log(data);
 
-    const history = [65, 22, 80, 81, 43];
+      const history = [65, 22, 80, 81, 43];
 
-    this.barChartData[0].data = [];
+      this.barChartData[0].data = [];
 
-    for (let h of history) {
-      this.barChartData[0].data.push(h);
-    }
+      for (let h of history) {
+        this.barChartData[0].data.push(h);
+      }
+
+    });
+    
   }
 
-  constructor() {
+  constructor(private http: HttpClient) {
   }
 
   // // Data

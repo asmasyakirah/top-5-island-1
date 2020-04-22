@@ -10,17 +10,31 @@ import { Color, Label } from 'ng2-charts';
 })
 export class HomePage {
 
+  segmentChanged(ev: any) {
+    console.log('Segment changed', ev);
+  }
+
   public barChartOptions:any = {
     scaleShowVerticalLines: false,
     responsive: true
   };
-  public barChartLabels:string[] = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
+  public barChartLabels:string[] = ['Island 1', 'Island 2', 'Island 3', 'Island 4', 'Island 5'];
   public barChartType:string = 'horizontalBar';
+  public barChartColors: Color[] = [
+    {
+      backgroundColor: [
+        '#59d3de',
+        '#ccd63f',
+        '#ed7179',
+        '#fea444',
+        '#971b5a'
+      ]
+    }
+  ];
   public barChartLegend:boolean = false;
   
   public barChartData:any[] = [
-    {data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A'},
-    {data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B'}
+    {data: [65, 59, 80, 81, 56], label: 'Series A'},
   ];
   
   // events
@@ -52,7 +66,7 @@ export class HomePage {
      * assign it;
      */
 
-    const history = [65, 22, 80, 81, 43, 55, 40];
+    const history = [65, 22, 80, 81, 43];
 
     this.barChartData[0].data = [];
 

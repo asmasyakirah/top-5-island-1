@@ -1,23 +1,23 @@
 
-<ion-header>
+<ion-header >
   <ion-toolbar>
     <ion-title>Top 5 Island</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [scrollEvents]="true">
-
-  <div id="container">
+<ion-content>
 
     <div class="ion-padding">
-
-      <img src="assets/island.png">
+      
+      <div>
+        <img src="assets/island.png">
+      </div>
   
       <p>This app shows the top 5 visited island based on date of visit. Select a date and see the list and graph result.</p>
       
       <ion-item>
         <ion-label>Date of visit</ion-label>
-        <ion-datetime displayFormat="YYYY-MM-DD" min="2017-03-01" max="2017-03-07" value="2017-03-01"></ion-datetime>
+        <ion-datetime displayFormat="YYYY-MM-DD" min="2017-03-01" max="2017-03-07" value="2017-03-01" (ionChange)="dateChanged($event)"></ion-datetime>
       </ion-item>
 
     </div>
@@ -41,15 +41,15 @@
       </ion-card-header>
     
       <ion-card-content>
-        <ion-list>
+        <ion-list [style.display]="isGraph ? 'none' : 'block'">
   
           <ion-item>
             <ion-avatar slot="start">
               <img src="./assets/1.jpg">
             </ion-avatar>
             <ion-label>
-              <h2>Island 1</h2>
-              <h3>5234 visits</h3>
+              <h2>{{ island_name1 }}</h2>
+              <h3>{{ visit_count1 }}</h3>
             </ion-label>
           </ion-item>
   
@@ -58,8 +58,8 @@
               <img src="./assets/2.jpg">
             </ion-avatar>
             <ion-label>
-              <h2>Island 2</h2>
-              <h3>4345 visits</h3>
+              <h2>{{ island_name2 }}</h2>
+              <h3>{{ visit_count2 }}</h3>
             </ion-label>
           </ion-item>
   
@@ -68,8 +68,8 @@
               <img src="./assets/3.jpg">
             </ion-avatar>
             <ion-label>
-              <h2>Island 3</h2>
-              <h3>4002 visits</h3>
+              <h2>{{ island_name3 }}</h2>
+              <h3>{{ visit_count3 }}</h3>
             </ion-label>
           </ion-item>
   
@@ -78,8 +78,8 @@
               <img src="./assets/4.jpg">
             </ion-avatar>
             <ion-label>
-              <h2>Island 4</h2>
-              <h3>2345 visits</h3>
+              <h2>{{ island_name4 }}</h2>
+              <h3>{{ visit_count4 }}</h3>
             </ion-label>
           </ion-item>
   
@@ -88,14 +88,14 @@
               <img src="./assets/5.jpg">
             </ion-avatar>
             <ion-label>
-              <h2>Island 5</h2>
-              <h3>1110 visits</h3>
+              <h2>{{ island_name5 }}</h2>
+              <h3>{{ visit_count5 }}</h3>
             </ion-label>
           </ion-item>
 
         </ion-list>
         
-        <div class="row">
+        <div class="row" [style.display]="isGraph ? 'block' : 'none'">
 
           <canvas baseChart
               [datasets]="barChartData"
@@ -106,16 +106,12 @@
               [chartType]="barChartType"
               (chartHover)="chartHovered($event)"
               (chartClick)="chartClicked($event)"></canvas>
-          
-          <button (click)="randomize()">Update</button>  
         
         </div>
 
       </ion-card-content>
 
-    </ion-card>   
-
-  </div>
+    </ion-card>  
 
 </ion-content>
 

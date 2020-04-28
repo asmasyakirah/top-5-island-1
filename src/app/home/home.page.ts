@@ -22,7 +22,7 @@ export class HomePage implements OnInit {
   @Input() visit_count5: any;
   @Input() isGraph: any;
 
-  apiBaseUrl: string = "http://localhost/";
+  apiBaseUrl: string = "https://mobile.uemedgenta.com";
   apiUrl: string = this.apiBaseUrl+"/top5island_api/api/getTop5ByDate.php?d=";
 
   public barChartOptions:any = {
